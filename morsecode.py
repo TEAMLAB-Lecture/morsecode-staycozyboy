@@ -85,7 +85,7 @@ def is_validated_english_sentence(user_input):
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당 또는 필요에 따라 자유로운 수정
     result = False
     specials = "_@#$%^&*()-+=[]{}';:\\|`~" + '"'
-    punctuations = ".,!?"
+    punctuations = ".,!? "
 
     for char in user_input:
         if char.isdigit():
@@ -258,10 +258,12 @@ def decoding_sentence(morse_sentence):
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당 또는 필요에 따라 자유로운 수정
     result = ""
-    for morse in morse_sentence.split():
-        result += decoding_character(morse)
-
-    return result
+    for morse_word in morse_sentence.split("  "):
+        for morse in morse_word.split():
+            result += decoding_character(morse)
+        result += " "
+    
+    return result[:-1]
     # ==================================
 
 
